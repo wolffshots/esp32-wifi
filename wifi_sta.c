@@ -7,15 +7,17 @@ EventGroupHandle_t s_wifi_event_group;
  * - we failed to connect after the maximum amount of retries */
 #define WIFI_CONNECTED_BIT BIT0
 #define WIFI_FAIL_BIT BIT1
+
 const char *TAG = "wifi station";
 int s_retry_num = 0;
 void event_handler(void *arg, esp_event_base_t event_base,
-                          int32_t event_id, void *event_data);
+                   int32_t event_id, void *event_data);
 void wifi_init_sta(void);
 
 void event_handler(void *arg, esp_event_base_t event_base,
-                          int32_t event_id, void *event_data)
+                   int32_t event_id, void *event_data)
 {
+#ifdef CONFIG_ESP_MAXIMUM_RETRY_STA
     if (event_base == WIFI_EVENT && event_id == WIFI_EVENT_STA_START)
     {
         esp_wifi_connect();
@@ -41,9 +43,11 @@ void event_handler(void *arg, esp_event_base_t event_base,
         s_retry_num = 0;
         xEventGroupSetBits(s_wifi_event_group, WIFI_CONNECTED_BIT);
     }
+#endif
 }
-void wifi_init_sta(void)
+void wifi_init_station(void)
 {
+#if defined(CONFIG_ESP_WIFI_SSID_STA) && defined(CONFIG_ESP_WIFI_PASSWORD_STA)
     s_wifi_event_group = xEventGroupCreate();
     ESP_ERROR_CHECK(esp_netif_init());
     ESP_ERROR_CHECK(esp_event_loop_create_default());
@@ -107,8 +111,9 @@ void wifi_init_sta(void)
     ESP_ERROR_CHECK(esp_event_handler_instance_unregister(IP_EVENT, IP_EVENT_STA_GOT_IP, instance_got_ip));
     ESP_ERROR_CHECK(esp_event_handler_instance_unregister(WIFI_EVENT, ESP_EVENT_ANY_ID, instance_any_id));
     vEventGroupDelete(s_wifi_event_group);
+#endif
 }
-void wifi_init()
+void wifi_init_sta()
 {
     printf("Wifi station!\n");
     esp_err_t ret = nvs_flash_init();
@@ -119,5 +124,5 @@ void wifi_init()
     }
     ESP_ERROR_CHECK(ret);
     ESP_LOGI(TAG, "ESP_WIFI_MODE_STA");
-    wifi_init_sta();
+    wifi_init_station();
 }
