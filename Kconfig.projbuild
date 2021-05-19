@@ -1,3 +1,4 @@
+# config vars for esp32-wifi
 menu "WiFi Configuration"
     config ESP_ENABLE_WIFI
         bool "Enable WiFi"
