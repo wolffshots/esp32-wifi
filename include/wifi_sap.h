@@ -15,6 +15,14 @@
 #include "lwip/sys.h"
 #include "sdkconfig.h"
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 void wifi_init_sap(void);
 
+#ifdef __cplusplus
+}
 #endif
+
+#endif // WIFI_SAP_H

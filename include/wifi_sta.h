@@ -17,6 +17,14 @@
 #include "lwip/err.h"
 #include "lwip/sys.h"
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 void wifi_init_sta(void);
 
+#ifdef __cplusplus
+}
 #endif
+
+#endif // WIFI_STA_H
