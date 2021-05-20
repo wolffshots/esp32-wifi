@@ -2,6 +2,8 @@
 
 this component constitutes some wrappers for the example wifi connections from esp-idf
 
+see the [esp-idf examples](https://github.com/espressif/esp-idf/tree/master/examples/wifi/getting_started) for more detail
+
 ## how to use project
 
 1. run ```git submodule add git@github.com:wolffshots/esp32-wifi.git components/esp32-wifi``` in your main project
