@@ -1,62 +1,62 @@
 # config vars for esp32-wifi
 menu "wolffshots/esp32-wifi config"
     config ESP_ENABLE_WIFI
-        bool "Enable WiFi"
+        bool "enable wifi"
         default y
         help
-            Enable or disable WiFi config
+            enable or disable wifi config
     choice
         depends on ESP_ENABLE_WIFI
-        prompt "Station or Soft AP"
+        prompt "station or soft ap"
         config ESP_ENABLE_WIFI_STA
-            bool "Station"
+            bool "station"
         config ESP_ENABLE_WIFI_SOFTAP
-            bool "Soft AP"
+            bool "soft ap"
     endchoice
     if !ESP_ENABLE_WIFI_SOFTAP && ESP_ENABLE_WIFI_STA
-        menu "Station"
+        menu "station"
             config ESP_WIFI_SSID_STA
-                string "WiFi SSID"
+                string "wifi ssid"
                 default "netWolff"
                 help
-                    SSID (network name) for the example to connect to.
+                    ssid (network name) for the example to connect to.
             config ESP_WIFI_PASSWORD_STA
-                string "WiFi Password"
+                string "wifi password"
                 default "mypassword"
                 help
-                    WiFi password (WPA or WPA2) for the example to use.
+                    wifi password (WPA or WPA2) for the example to use.
             config ESP_MAXIMUM_RETRY_STA
-                int "Maximum retry"
+                int "maximum retries"
                 default 5
                 help
-                    Set the Maximum retry to avoid station reconnecting to the AP unlimited when the AP is really inexistent.
+                    set the maximum retry to avoid station reconnecting to the ap unlimited when the ap is really inexistent
         endmenu
     endif
     comment "station disabled"
         depends on !ESP_ENABLE_WIFI_STA
     if ESP_ENABLE_WIFI_SOFTAP && !ESP_ENABLE_WIFI_STA
-        menu "Soft AP"
+        menu "soft ap"
             config ESP_WIFI_SSID_SOFTAP
-                string "WiFi SSID"
+                string "wifi ssid"
                 default "esp-ssid"
                 help
                     SSID (network name) for the example to connect to.
             config ESP_WIFI_PASSWORD_SOFTAP
-                string "WiFi Password"
+                string "wifi password"
                 default "mypassword"
                 help
-                    WiFi password (WPA or WPA2) for the example to use.
+                    wifi password (WPA or WPA2) for the example to use.
             config ESP_WIFI_CHANNEL_SOFTAP
-                int "WiFi Channel"
+                int "wifi channel"
                 range 1 13
                 default 1
                 help
-                    WiFi channel (network channel) for the example to use.
+                    wifi channel (network channel) for the example to use.
             config ESP_MAX_STA_CONN_SOFTAP
-                int "Maximal STA connections"
+                int "maximal station connections"
                 default 4
                 help
-                    Max number of the STA connects to AP.
+                    max number of stations to connect to ap
         endmenu
     endif
     comment "soft ap disabled"
