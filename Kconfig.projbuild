@@ -1,5 +1,5 @@
 # config vars for esp32-wifi
-menu "WiFi Configuration"
+menu "wolffshots/esp32-wifi config"
     config ESP_ENABLE_WIFI
         bool "Enable WiFi"
         default y
