@@ -1,5 +1,5 @@
 # esp32-wifi
-Docs: [![couldn't get build status](https://api.travis-ci.com/wolffshots/esp32-wifi.svg?branch=main "Current doc build status")](https://davidantliff.github.io/esp32-wifi/index.html)
+Docs: [![couldn't get build status](https://api.travis-ci.com/wolffshots/esp32-wifi.svg?branch=main "Current doc build status")](https://wolffshots.github.io/esp32-wifi/index.html)
 
 this component constitutes some wrappers for the example wifi connections from esp-idf
 
