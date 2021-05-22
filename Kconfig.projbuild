@@ -13,6 +13,16 @@ menu "wolffshots/esp32-wifi config"
         config ESP_ENABLE_WIFI_SOFTAP
             bool "soft ap"
     endchoice
+    config WIFI_STA_LOG_TAG
+        string  "log tag for wifi sta"
+        default "esp32-wifi_sta"
+        help
+            the tag to use when using the esp logging library for station mode
+    config WIFI_SAP_LOG_TAG
+        string  "log tag for wifi sap"
+        default "esp32-wifi_sap"
+        help
+            the tag to use when using the esp logging library for softap mode
     if !ESP_ENABLE_WIFI_SOFTAP && ESP_ENABLE_WIFI_STA
         menu "station"
             config ESP_WIFI_SSID_STA
@@ -29,12 +39,7 @@ menu "wolffshots/esp32-wifi config"
                 int "maximum retries"
                 default 5
                 help
-                    set the maximum retry to avoid station reconnecting to the ap unlimited when the ap is really inexistent
-            config WIFI_STA_LOG_TAG
-                string  "log tag for wifi sta"
-                default "esp32-wifi_sta"
-                help
-                    the tag to use when using the esp logging library for station mode
+                    set the maximum retry to avoid station reconnecting to the ap unlimited when the ap is really inexistent            
         endmenu
     endif
     comment "station disabled"
@@ -62,11 +67,6 @@ menu "wolffshots/esp32-wifi config"
                 default 4
                 help
                     max number of stations to connect to ap
-            config WIFI_SAP_LOG_TAG
-                string  "log tag for wifi sap"
-                default "esp32-wifi_sap"
-                help
-                    the tag to use when using the esp logging library for softap mode
         endmenu
     endif
     comment "soft ap disabled"
