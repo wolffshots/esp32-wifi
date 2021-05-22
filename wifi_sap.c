@@ -31,7 +31,7 @@
 
 #include "wifi_sap.h"
 
-static const char *TAG = "wifi softAP";
+static const char *TAG = CONFIG_WIFI_STA_LOG_TAG;
 
 #if defined(CONFIG_ESP_WIFI_SSID_SOFTAP) && defined(CONFIG_ESP_WIFI_PASSWORD_SOFTAP) && defined(CONFIG_ESP_WIFI_CHANNEL_SOFTAP) && defined(CONFIG_ESP_MAX_STA_CONN_SOFTAP)
 static void wifi_event_handler(void *arg, esp_event_base_t event_base,
@@ -88,7 +88,7 @@ void wifi_init_softap(void)
 
 void wifi_init_sap(void)
 {
-    printf("Wifi sap!\n");
+    ESP_LOGI(TAG, "Wifi softap!\n");
     //Initialize NVS
     esp_err_t ret = nvs_flash_init();
     if (ret == ESP_ERR_NVS_NO_FREE_PAGES || ret == ESP_ERR_NVS_NEW_VERSION_FOUND)

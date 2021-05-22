@@ -39,7 +39,7 @@ EventGroupHandle_t s_wifi_event_group;
 #define WIFI_CONNECTED_BIT BIT0
 #define WIFI_FAIL_BIT BIT1
 
-const char *TAG = "wifi station";
+const char *TAG = CONFIG_WIFI_SAP_LOG_TAG;
 int s_retry_num = 0;
 void event_handler(void *arg, esp_event_base_t event_base,
                    int32_t event_id, void *event_data);
@@ -146,7 +146,7 @@ void wifi_init_station(void)
 }
 void wifi_init_sta()
 {
-    printf("Wifi station!\n");
+    ESP_LOGI(TAG, "Wifi station!\n");
     esp_err_t ret = nvs_flash_init();
     if (ret == ESP_ERR_NVS_NO_FREE_PAGES || ret == ESP_ERR_NVS_NEW_VERSION_FOUND)
     {
