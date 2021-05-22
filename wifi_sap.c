@@ -24,6 +24,11 @@
  * A note on the copyright line: https://www.copyright.gov/title17/92chap4.html#408
  */
 
+/**
+ * @file wifi_sap.c
+ * @brief implementation for wrapper component to set up wifi in softap mode
+ */
+
 #include "wifi_sap.h"
 
 static const char *TAG = "wifi softAP";

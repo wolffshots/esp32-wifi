@@ -24,6 +24,11 @@
  * A note on the copyright line: https://www.copyright.gov/title17/92chap4.html#408
  */
 
+/**
+ * @file wifi_sta.c
+ * @brief implementation for wrapper component to set up wifi in station mode
+ */
+
 #include "wifi_sta.h"
 
 /* FreeRTOS event group to signal when we are connected*/

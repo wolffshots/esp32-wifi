@@ -22,6 +22,11 @@
  * SOFTWARE.
  */
 
+/**
+ * @file wifi_sta.h
+ * @brief defininitions for wrapper component to set up wifi in station mode
+ */
+
 #ifndef WIFI_STA_H
 #define WIFI_STA_H
 

@@ -22,6 +22,11 @@
  * SOFTWARE.
  */
 
+/**
+ * @file wifi_sap.h
+ * @brief defininitions for wrapper component to set up wifi in softap mode
+ */
+
 #ifndef WIFI_SAP_H
 #define WIFI_SAP_H
 
