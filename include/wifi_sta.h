@@ -45,6 +45,8 @@
 #include "nvs_flash.h"
 #include "lwip/err.h"
 #include "lwip/sys.h"
+#include <string.h>
+#include "wifi_shared.h"
 
 #ifdef __cplusplus
 extern "C" {

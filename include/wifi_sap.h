@@ -43,6 +43,7 @@
 #include "lwip/err.h"
 #include "lwip/sys.h"
 #include "sdkconfig.h"
+#include "wifi_shared.h"
 
 #ifdef __cplusplus
 extern "C" {
