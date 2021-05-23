@@ -122,17 +122,35 @@ void wifi_init_station(void)
                                            pdFALSE,
                                            pdFALSE,
                                            portMAX_DELAY);
+    
+    // hide after first 2 chars
+    char pass[6];
+    if (strlen(CONFIG_ESP_WIFI_PASSWORD_STA) > 5)
+    {
+        char str2[40];
+        strncpy(str2, CONFIG_ESP_WIFI_PASSWORD_STA, sizeof(str2));
+        strncpy(pass, str2, 2);
+    }
+    else
+    {
+        pass[0] = '*';
+        pass[1] = '*';
+    }
+    pass[2] = '*';
+    pass[3] = '*';
+    pass[4] = '*';
+    pass[5] = '\0';
     /* xEventGroupWaitBits() returns the bits before the call returned, hence we can test which event actually
      * happened. */
     if (bits & WIFI_CONNECTED_BIT)
     {
-        ESP_LOGI(TAG, "connected to ap SSID:%s password:%s",
-                 CONFIG_ESP_WIFI_SSID_STA, CONFIG_ESP_WIFI_PASSWORD_STA);
+        ESP_LOGI(TAG, "connected to ap SSID: %s, password: %s",
+                 CONFIG_ESP_WIFI_SSID_STA, pass);
     }
     else if (bits & WIFI_FAIL_BIT)
     {
-        ESP_LOGI(TAG, "Failed to connect to SSID:%s, password:%s",
-                 CONFIG_ESP_WIFI_SSID_STA, CONFIG_ESP_WIFI_PASSWORD_STA);
+        ESP_LOGI(TAG, "Failed to connect to SSID: %s, password: %s",
+                 CONFIG_ESP_WIFI_SSID_STA, pass);
     }
     else
     {
@@ -146,7 +164,7 @@ void wifi_init_station(void)
 }
 void wifi_init_sta()
 {
-    ESP_LOGI(TAG, "Wifi station!\n");
+    ESP_LOGI(TAG, "wifi station!");
     esp_err_t ret = nvs_flash_init();
     if (ret == ESP_ERR_NVS_NO_FREE_PAGES || ret == ESP_ERR_NVS_NEW_VERSION_FOUND)
     {
@@ -154,6 +172,5 @@ void wifi_init_sta()
         ret = nvs_flash_init();
     }
     ESP_ERROR_CHECK(ret);
-    ESP_LOGI(TAG, "ESP_WIFI_MODE_STA");
     wifi_init_station();
 }
