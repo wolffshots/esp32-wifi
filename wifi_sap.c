@@ -81,14 +81,14 @@ void wifi_init_softap(void)
     ESP_ERROR_CHECK(esp_wifi_set_config(WIFI_IF_AP, &wifi_config));
     ESP_ERROR_CHECK(esp_wifi_start());
 
-    ESP_LOGI(TAG, "wifi_init_softap finished. SSID:%s password:%s channel:%d",
-             CONFIG_ESP_WIFI_SSID_SOFTAP, CONFIG_ESP_WIFI_PASSWORD_SOFTAP, CONFIG_ESP_WIFI_CHANNEL_SOFTAP);
+    ESP_LOGI(TAG, "wifi_init_softap finished. SSID: %s, password: %s%s*** channel:%d",
+             CONFIG_ESP_WIFI_SSID_SOFTAP, CONFIG_ESP_WIFI_PASSWORD_SOFTAP[0], CONFIG_ESP_WIFI_PASSWORD_SOFTAP[1], CONFIG_ESP_WIFI_CHANNEL_SOFTAP);
 #endif
 }
 
 void wifi_init_sap(void)
 {
-    ESP_LOGI(TAG, "Wifi softap!\n");
+    ESP_LOGI(TAG, "wifi softap!");
     //Initialize NVS
     esp_err_t ret = nvs_flash_init();
     if (ret == ESP_ERR_NVS_NO_FREE_PAGES || ret == ESP_ERR_NVS_NEW_VERSION_FOUND)
@@ -97,7 +97,5 @@ void wifi_init_sap(void)
         ret = nvs_flash_init();
     }
     ESP_ERROR_CHECK(ret);
-
-    ESP_LOGI(TAG, "ESP_WIFI_MODE_AP");
     wifi_init_softap();
 }
