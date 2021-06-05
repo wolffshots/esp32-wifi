@@ -71,6 +71,7 @@ void event_handler(void *arg, esp_event_base_t event_base,
     {
         ip_event_got_ip_t *event = (ip_event_got_ip_t *)event_data;
         ESP_LOGI(TAG, "got ip:" IPSTR, IP2STR(&event->ip_info.ip));
+        sprintf(ip_address, IPSTR, IP2STR(&event->ip_info.ip));
         s_retry_num = 0;
         xEventGroupSetBits(s_wifi_event_group, WIFI_CONNECTED_BIT);
     }
@@ -122,7 +123,7 @@ void wifi_init_station(void)
                                            pdFALSE,
                                            pdFALSE,
                                            portMAX_DELAY);
-    
+
     // hide after first 2 chars
     char pass[6];
     if (strlen(CONFIG_ESP_WIFI_PASSWORD_STA) > 5)
